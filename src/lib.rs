@@ -9,6 +9,17 @@ pub struct Config {
 }
 
 impl Config {
+    /// Create config
+    /// # Example
+    /// ```
+    /// use std::env;
+    /// use minigrep::Config;
+    ///
+    /// let config = Config::build(vec!["minigrep".to_string(), "query".to_string(), "path".to_string()].into_iter()).expect("create config error");
+    /// assert_eq!(config.query, "query".to_string());
+    /// assert_eq!(config.path, "path".to_string());
+    /// assert_eq!(config.ignore_case, false);
+    /// ```
     pub fn build(mut args: impl Iterator<Item=String>) -> Result<Config, &'static str> {
         args.next();
 
