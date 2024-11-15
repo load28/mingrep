@@ -1,4 +1,4 @@
-use minigrep::Config;
+use derek_minigrep::Config;
 use std::{env, process};
 
 fn main() {
@@ -7,9 +7,8 @@ fn main() {
         process::exit(1);
     });
 
-    if let Err(err) = minigrep::run(config) {
+    if let Err(err) = derek_minigrep::run(config) {
         eprintln!("Application error: {}", err);
         process::exit(1);
     }
 }
-
