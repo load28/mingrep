@@ -13,7 +13,7 @@ impl Config {
     /// # Example
     /// ```
     /// use std::env;
-    /// use minigrep::Config;
+    /// use derek_minigrep::Config;
     ///
     /// let config = Config::build(vec!["minigrep".to_string(), "query".to_string(), "path".to_string()].into_iter()).expect("create config error");
     /// assert_eq!(config.query, "query".to_string());
@@ -41,7 +41,7 @@ impl Config {
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.path)?;
-    
+
     let results = if config.ignore_case {
         search_case_insensitive(&config.query, &contents)
     } else {
@@ -56,7 +56,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    contents.lines().filter(|line| {line.contains(query)}).collect()
+    contents.lines().filter(|line| { line.contains(query) }).collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
